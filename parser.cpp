@@ -35,7 +35,7 @@ array_list<dom_node*> parse_elements(lexer& lex) {
 
         if(l.type == CONTENT) {
             // create a new TEXT node (TODO: you should edit this to match your dom_node class)
-            dom_node* current = new dom_node(TEXT);
+            dom_node* current = new dom_node("TEXT");
             current->set_text(l.value);
             elements.add(current);
             lex.accept();
