@@ -1,32 +1,44 @@
 #include "parser.hpp"
 
-hash_map<std::string, std::string> parse_attributes(lexer& lex) {
+dom_node* parse_element(lexer& lex) {
+    dom_node* tmp = new dom_node;
+	linked_list<attribute*> details;
 
-    // collect the name/value pairs in hash_map
-    hash_map<std::string, std::string> attributes;
-
-    // from grammar rules: when we no longer see an NAME, we're done with the list.
-    while(lex.peek().type == ATTRIBUTE_NAME) {
+	tmp->set_name(lex.expect(TAG_BEGIN).value);	// get the name
+	while(lex.peek().type == ATTRIBUTE_NAME) {
         // grammar rule states that attributes are NAME, then =, then VALUE.
-        std::string name = lex.accept().value;
+        string name = lex.accept().value;
         lex.expect(EQUALS_SIGN);
         lexeme l = lex.expect(ATTRIBUTE_VALUE);
         
-        // add entry to hash_map
-        attributes.put(name, l.value);       
+        // add entry to liked_list
+		attribute* attr = new attribute;
+		attr->key = name;
+		attr->value = l.value;
+        details.add(attr);       
     }
-    return attributes;
-}
+	if(lex.peek().type == TAG_END){
+		lex.accept();
+		tmp->set_children(parse_elements(lex));
+		if(!(tmp->get_name() == lex.expect(TAG_CLOSE).value))
+			//throw exception
+		lex.expect(TAG_END);
+		tmp->set_attribute(details);
+		return tmp;
+	}
+	else if(lex.peek().type == TAG_END_AND_CLOSE){
+		lex.accept();
+		tmp->set_attribute(details);
+		return tmp;
+	}
 
-dom_node* parse_element(lexer& lex) {
-    // TODO
     return NULL; 
 }
 
-array_list<dom_node*> parse_elements(lexer& lex) {
+linked_list<dom_node*> parse_elements(lexer& lex) {
 
     // collect nodes in a list.
-    array_list<dom_node*> elements;
+    linked_list<dom_node*> elements;
 
     // from grammar rules: when we see a '<', were done with plain text.
     // also --> when lexer is exhausted.

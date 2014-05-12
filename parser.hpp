@@ -9,8 +9,7 @@
 #include "arraylist.hpp"
 
 dom_node* parse_element(lexer &lex);
-hash_map<std::string, std::string> parse_attributes(lexer &lex);
-array_list<dom_node*> parse_elements(lexer &lex);
+linked_list<dom_node*> parse_elements(lexer &lex);
 
 
 #endif

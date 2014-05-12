@@ -175,14 +175,14 @@ void array_list<T>::clear() {
 
 template <class T>
 T array_list<T>::get(int position) {
-	if(position < 0 && position >= list_size)
+	if(position < 0 || position >= list_size)
         throw invalid_position_exception();
     return elements[position];
 }
 
 template <class T>
 T array_list<T>::set(int position, T element) {
-	if(position < 0 && position >= list_size)
+	if(position < 0 || position >= list_size)
         throw invalid_position_exception();
     T ret = elements[position];
     elements[position] = element;
