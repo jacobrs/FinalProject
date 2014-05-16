@@ -1,4 +1,5 @@
 #include "domnode.hpp"
+#include "parser.hpp"
 
 dom_node::dom_node(){
 	type = "";
@@ -16,5 +17,5 @@ dom::dom(string file){
 	ifstream fin;
 	istream& in = fin;
 	lexer lex(in);
-	//head->set_children(parse_elements( ));
+	head->set_children(parse_elements(lex));
 }
