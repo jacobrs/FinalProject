@@ -20,8 +20,9 @@ dom_node* parse_element(lexer& lex) {
 	if(lex.peek().type == TAG_END){
 		lex.accept();
 		tmp->set_children(parse_elements(lex));
-		if(!(tmp->get_name() == lex.expect(TAG_CLOSE).value))
+		//if(!(tmp->get_name() == lex.expect(TAG_CLOSE).value))
 			//throw exception
+		lex.expect(TAG_CLOSE);
 		lex.expect(TAG_END);
 		tmp->set_attribute(details);
 		return tmp;

@@ -16,8 +16,9 @@ void dom_node::pretty_print(ostream& out, int level){
 dom::dom(string file){
 	ifstream fin(file);
 	if(fin.is_open()){
-        istream& in = fin;
-        lexer lex(in);
-        head->set_children(parse_elements(lex));
+        //istream& in = fin;
+        lexer lex(fin);
+		head = new dom_node;
+        head->set_children(parse_elements(lex));	
     }
 }

@@ -1,5 +1,17 @@
-<start>
-	<now>
-		This is a dummy file.
-	</now>
-</start>
+<movies>
+<movie id="starwars-ep4" title="Star Wars: Episode IV - A New Hope">
+<year>1977</year>
+<director name="George Lucas"/>
+<runtime>121</runtime>
+<plot>
+Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a
+wookiee and two droids to save the universe from the Empire's
+world-destroying battle-station, while also attempting to rescue
+Princess Leia from the evil Darth Vader.
+</plot>
+<genre>Action</genre><genre>Adventure</genre><genre>Fantasy</genre>
+<actor role="Luke Skywalker">Mark Hamill</actor>
+<actor role="Princess Leia">Carrie Fisher</actor>
+<actor role="Han Solo">Harrison Ford</actor>
+</movie>
+</movies>
