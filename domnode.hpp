@@ -1,5 +1,11 @@
+#ifndef _DOMNODE_HPP_
+#define _DOMNODE_HPP_
+
 #include "linkedlist.hpp"
+#include "lexer.hpp"
+#include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 struct attribute{
@@ -15,15 +21,15 @@ public:
 
 	void pretty_print(ostream&, int);
 
-	void set_text(string t){type = t;};
-	void set_name(string n){name = n;};
-	void set_children(linked_list<dom_node*> tmp){children = tmp;};
-	void set_attribute(linked_list<attribute*> tmp){attrs = tmp;};
+	void set_text(string t){type = t;}
+	void set_name(string n){name = n;}
+	void set_children(linked_list<dom_node*> tmp){children = tmp;}
+	void set_attribute(linked_list<attribute*> tmp){attrs = tmp;}
 
-	string get_name(){return name;};
+	string get_name(){return name;}
 
-	void set_inner_html(dom_node* current, string html);
-	linked_list<dom_node*> get_elements_by_tagname(string tag);
+	void set_inner_html(dom_node*, string);
+	linked_list<dom_node*> get_elements_by_tagname(string );
 
 	//access children
 	int number_children();
@@ -35,24 +41,9 @@ private:
 	linked_list<dom_node*> children; 
 };
 
-dom_node::dom_node(){
-	type = "";
-	name = "";
-}
-dom_node::dom_node(string t){
-	type = t;
-	name = "";
-}
-void dom_node::pretty_print(ostream& out, int level){
-	//TODO
-}
-
-
-
 class dom {
-
 public: 
-	dom(string filename);
+	dom(string);
     dom_node* get_element_by_id(string id);
 	linked_list<dom_node*> get_elements_by_tagname(string tag);
 	void pretty_print(ostream& out, int level);
@@ -61,8 +52,4 @@ private:
 	dom_node* head; 
 };
 
-dom::dom(string file){
-	fstream fin(file);
-	lexer lex(fin);
-	head->set_children(parse_elements(lex));
-}
+#endif
