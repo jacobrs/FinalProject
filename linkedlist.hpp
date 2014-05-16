@@ -29,6 +29,7 @@
 #include <algorithm>
 #include <fstream>
 
+#include "serialization.hpp"
 #include "exceptions.hpp"
 
 /* forward declarations to allow (de)serialize(..) to be friend functions */
