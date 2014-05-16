@@ -11,7 +11,10 @@
 
 int main(int argc, char** argv) 
 {
-	dom root("test.txt");
+    string filename = "";
+    //Jacob's Path
+    //filename = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/test.txt";
+	dom root(filename);
 	
     return 0;
 }

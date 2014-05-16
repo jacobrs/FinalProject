@@ -1,1 +1,5 @@
-<start><now>This is a dummy file.</now></start>
+<start>
+	<now>
+		This is a dummy file.
+	</now>
+</start>
