@@ -21,10 +21,12 @@ public:
 
 	void pretty_print(ostream&, int);
 
-	void set_text(string t){type = t;}
+	void set_text(string t){text = t;}
 	void set_name(string n){name = n;}
 	void set_children(linked_list<dom_node*> tmp){children = tmp;}
 	void set_attribute(linked_list<attribute*> tmp){attrs = tmp;}
+    
+    linked_list<dom_node*> get_children(){return children;};
 
 	string get_name(){return name;}
 
@@ -35,8 +37,10 @@ public:
 	int number_children();
 	dom_node* get_child(int);
 private:
+    void print_spacing(ostream&, int);
 	string type;
 	string name;
+    string text;
 	linked_list<attribute*> attrs;
 	linked_list<dom_node*> children; 
 };
@@ -45,8 +49,8 @@ class dom {
 public: 
 	dom(string);
     dom_node* get_element_by_id(string id);
+    void pretty_print(ostream&);
 	linked_list<dom_node*> get_elements_by_tagname(string tag);
-	void pretty_print(ostream& out, int level);
 private: 
 	dom_node* get_element_by_id(dom_node* current, string id);
 	dom_node* head; 
