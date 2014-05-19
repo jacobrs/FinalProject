@@ -44,6 +44,19 @@ void dom_node::pretty_print(ostream &out, int level){
     }
 }
 
+dom_node* dom_node::get_child(int num){
+    dom_node* ret = NULL;
+    if(num >= get_children().size() || num < 0)
+        throw invalid_child_number("The child number demanded is invalid");
+    else{
+        children.reset();
+        for(int i = 0; i <= num; i++){
+            ret = children.next();
+        }
+    }
+    return ret;
+}
+
 
 dom::dom(string file){
 	ifstream fin(file);
@@ -63,4 +76,14 @@ void dom::pretty_print(ostream &out){
         root = tmp.next();
         root->pretty_print(out, 0);
     }
+}
+
+dom_node* dom::get_root(){
+    dom_node* root;
+    linked_list<dom_node*> tmp = head->get_children();
+    tmp.reset();
+    if(!tmp.has_next())
+        throw invalid_node();
+    root = tmp.next();
+    return root;
 }

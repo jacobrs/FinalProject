@@ -8,6 +8,15 @@
 #include <string>
 using namespace std;
 
+struct invalid_child_number {
+    std::string message;
+    invalid_child_number(std::string msg = "") {
+        message = msg;
+    }
+};
+
+struct invalid_node{};
+
 struct attribute{
 	string key;	//i.e. id, title, etc.
 	string value;
@@ -21,20 +30,21 @@ public:
 
 	void pretty_print(ostream&, int);
 
+    // Setters
 	void set_text(string t){text = t;}
 	void set_name(string n){name = n;}
 	void set_children(linked_list<dom_node*> tmp){children = tmp;}
 	void set_attribute(linked_list<attribute*> tmp){attrs = tmp;}
     
+    // Getters
     linked_list<dom_node*> get_children(){return children;};
-
 	string get_name(){return name;}
 
 	void set_inner_html(dom_node*, string);
 	linked_list<dom_node*> get_elements_by_tagname(string );
 
 	//access children
-	int number_children();
+	int number_children(){return children.size();};
 	dom_node* get_child(int);
 private:
     void print_spacing(ostream&, int);
@@ -46,7 +56,8 @@ private:
 };
 
 class dom {
-public: 
+public:
+    dom_node* get_root();
 	dom(string);
     dom_node* get_element_by_id(string id);
     void pretty_print(ostream&);
