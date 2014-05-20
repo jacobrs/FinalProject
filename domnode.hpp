@@ -56,7 +56,8 @@ public:
 	string getAttributeID(attribute* tmp){return tmp->key;}
 	string getAttributeValue(attribute* tmp){return tmp->value;}
 
-	void set_inner_html(dom_node*, string);
+    
+    void set_innerhtml(string html);
 	array_list<dom_node*> get_elements_by_tagname(string);
 	dom_node* get_element_by_id(string id);
 
@@ -78,6 +79,7 @@ public:
 	dom(string);
     dom_node* get_element_by_id(string id);
     void pretty_print(ostream&);
+    void set_innerhtml(string);
 	array_list<dom_node*> get_elements_by_tagname(string tag);
 private: 
 	dom_node* head; 

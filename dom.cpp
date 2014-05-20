@@ -62,6 +62,12 @@ void dom_node::pretty_print(ostream &out, int level){
     }
 }
 
+void dom_node::set_innerhtml(string html){
+    istringstream sin(html);
+    lexer lex(sin);
+    children = parse_elements(lex);
+}
+
 dom_node* dom_node::get_child(int num){
     dom_node* ret = NULL;
     if(num >= get_children().size() || num < 0)
@@ -137,4 +143,8 @@ array_list<dom_node*> dom::get_elements_by_tagname(string tagname){
     if(tmp.is_empty())
         throw tag_not_found("The tag requested was not found");
     return tmp;
+}
+
+void dom::set_innerhtml(string html){
+    get_root()->set_innerhtml(html);
 }

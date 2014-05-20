@@ -14,16 +14,16 @@ int main(int argc, char** argv)
     // =============================== //
     //         Jacob's Paths           //
     // =============================== //
-   /* outfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/out.txt";
+    outfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/out.txt";
     filename = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/test.txt";
-    testfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/sample.txt";*/
+    testfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/sample.txt";
     
     // =============================== //
     //         Alex's Paths            //
     // =============================== //
-	outfile = "./workspace/out.txt";
-	filename = "./workspace/test.txt";
-	testfile = "./workspace/sample.txt";
+	//outfile = "./workspace/out.txt";
+	//filename = "./workspace/test.txt";
+	//testfile = "./workspace/sample.txt";
     
     
 	// =============================== //
@@ -46,7 +46,18 @@ int main(int argc, char** argv)
     //outf << endl << " =========== INDIVIDUAL TEST ==========" << endl << endl;
     //mydom.get_root()->get_child(0)->get_child(8)->pretty_print(outf, 0);
 
-	// =============================== //
+    try{
+        mydom.get_root()->set_innerhtml("<strong>SUCK IT BEN</strong>");
+        mydom.pretty_print(outf);
+    }catch(parse_exception error) {
+        std::cerr << error.message << std::endl;
+        return 1; }
+    catch(lexer_exception error) {
+        std::cerr << error.message << std::endl;
+        return 1;
+    }
+    
+    // =============================== //
 	//  GET ELEMENTS BY TAGNAME TEST   //
 	// =============================== //
 	outf << endl << " =========== GET ELEMENTS BY TAG NAME ==========" << endl << endl;
