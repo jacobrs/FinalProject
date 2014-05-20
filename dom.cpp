@@ -17,6 +17,24 @@ void dom_node::print_spacing(ostream &out, int tabs){
         out << "\t";
 }
 
+array_list<dom_node*> dom_node::get_elements_by_tagname(string tagname){
+    array_list<dom_node*>* ret = new array_list<dom_node*>; //returning array list
+    if(name == tagname)
+        ret->add(this);
+    children.reset();
+    dom_node* tmp;
+    array_list<dom_node*> retarr;
+    while(children.has_next()){
+        tmp = children.next();
+        retarr = tmp->get_elements_by_tagname(tagname);
+        while(!retarr.is_empty()){
+            ret->add(retarr.get(0));
+            retarr.remove(0);
+        }
+    }
+    return *ret;
+}
+
 void dom_node::pretty_print(ostream &out, int level){
     print_spacing(out, level);
     if(type != "TEXT"){
@@ -57,6 +75,9 @@ dom_node* dom_node::get_child(int num){
     return ret;
 }
 
+// -------------------------------
+//         DOM FUNCTIONS
+// -------------------------------
 
 dom::dom(string file){
 	ifstream fin(file);
@@ -86,4 +107,8 @@ dom_node* dom::get_root(){
         throw invalid_node();
     root = tmp.next();
     return root;
+}
+
+array_list<dom_node*> dom::get_elements_by_tagname(string tagname){
+    return get_root()->get_elements_by_tagname(tagname);
 }

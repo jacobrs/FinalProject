@@ -2,6 +2,7 @@
 #define _DOMNODE_HPP_
 
 #include "linkedlist.hpp"
+#include "arraylist.hpp"
 #include "lexer.hpp"
 #include <iostream>
 #include <fstream>
@@ -41,7 +42,7 @@ public:
 	string get_name(){return name;}
 
 	void set_inner_html(dom_node*, string);
-	linked_list<dom_node*> get_elements_by_tagname(string );
+	array_list<dom_node*> get_elements_by_tagname(string);
 
 	//access children
 	int number_children(){return children.size();};
@@ -61,7 +62,7 @@ public:
 	dom(string);
     dom_node* get_element_by_id(string id);
     void pretty_print(ostream&);
-	linked_list<dom_node*> get_elements_by_tagname(string tag);
+	array_list<dom_node*> get_elements_by_tagname(string tag);
 private: 
 	dom_node* get_element_by_id(dom_node* current, string id);
 	dom_node* head; 
