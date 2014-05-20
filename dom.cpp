@@ -110,5 +110,8 @@ dom_node* dom::get_root(){
 }
 
 array_list<dom_node*> dom::get_elements_by_tagname(string tagname){
-    return get_root()->get_elements_by_tagname(tagname);
+    array_list<dom_node*> tmp = get_root()->get_elements_by_tagname(tagname);
+    if(tmp.is_empty())
+        throw tag_not_found("The tag requested was not found");
+    return tmp;
 }

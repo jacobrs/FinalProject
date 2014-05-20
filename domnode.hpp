@@ -15,6 +15,12 @@ struct invalid_child_number {
         message = msg;
     }
 };
+struct tag_not_found {
+    std::string message;
+    tag_not_found(std::string msg = "") {
+        message = msg;
+    }
+};
 
 struct invalid_node{};
 

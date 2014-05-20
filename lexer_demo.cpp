@@ -43,10 +43,14 @@ int main(int argc, char** argv)
     //mydom.pretty_print(outf);
     //outf << endl << " =========== INDIVIDUAL TEST ==========" << endl;
     //mydom.get_root()->get_child(0)->get_child(8)->pretty_print(outf, 0);
-	array_list<dom_node*> tmp = mydom.get_root()->get_elements_by_tagname("actor");
-    while(!tmp.is_empty()){
-        tmp.get(0)->pretty_print(outf, 0);
-        tmp.remove(0);
+    try{
+        array_list<dom_node*> tmp = mydom.get_elements_by_tagname("mov");
+        while(!tmp.is_empty()){
+            tmp.get(0)->pretty_print(outf, 0);
+            tmp.remove(0);
+        }
+    }catch(tag_not_found& e){
+        outf << "ERROR: " << e.message;
     }
     outf.close();
     return 0;
