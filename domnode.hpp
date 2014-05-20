@@ -29,7 +29,19 @@ struct id_not_found {
     }
 };
 
-struct invalid_node{};
+struct invalid_node {
+    std::string message;
+    invalid_node(std::string msg = "") {
+        message = msg;
+    }
+};
+
+struct invalid_XML {
+    std::string message;
+    invalid_XML(std::string msg = "") {
+        message = msg;
+    }
+};
 
 struct attribute{
 	string key;	//i.e. id, title, etc.
@@ -40,6 +52,7 @@ struct attribute{
 class dom_node{
 public:
 	dom_node();
+	~dom_node();
 	dom_node(string);
 
 	void pretty_print(ostream&, int);
@@ -56,6 +69,9 @@ public:
 	string getAttributeID(attribute* tmp){return tmp->key;}
 	string getAttributeValue(attribute* tmp){return tmp->value;}
 
+	// Clearers
+	void clear_children(){children.clear();}
+	void clear_attributes(){attrs.clear();}
     
     void set_innerhtml(string html);
 	array_list<dom_node*> get_elements_by_tagname(string);
@@ -75,8 +91,9 @@ private:
 
 class dom {
 public:
-    dom_node* get_root();
 	dom(string);
+	~dom();
+    dom_node* get_root();
     dom_node* get_element_by_id(string id);
     void pretty_print(ostream&);
     void set_innerhtml(string);

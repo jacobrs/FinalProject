@@ -17,16 +17,18 @@ dom_node* parse_element(lexer& lex) {
 		attr->value = l.value;
         details.add(attr);       
     }
+	//process elements following tag end
 	if(lex.peek().type == TAG_END){
-		lex.accept();
+		lex.accept();	
 		tmp->set_children(parse_elements(lex));
-		//if(!(tmp->get_name() == lex.expect(TAG_CLOSE).value))
-			//throw exception
-		lex.expect(TAG_CLOSE);
+		if(!(tmp->get_name() == lex.peek().value))
+			throw invalid_XML("ERROR: Close tag mismatch");
+		lex.expect(TAG_CLOSE); 
 		lex.expect(TAG_END);
 		tmp->set_attribute(details);
 		return tmp;
 	}
+	//process element terminator
 	else if(lex.peek().type == TAG_END_AND_CLOSE){
 		lex.accept();
 		tmp->set_attribute(details);
