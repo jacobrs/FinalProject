@@ -20,7 +20,7 @@
 		<genre>
 			Fantasy
 		</genre>
-		<actor role="Luke Skywalker"/>
+		<actor id="main" role="Luke Skywalker"/>
 			Mark Hamill
 		</actor>
 		<actor role="Princess Leia"/>
@@ -32,6 +32,4 @@
 	</movie>
 </movies>
  =========== INDIVIDUAL TEST ==========
-<actor role="Princess Leia"/>
-	Carrie Fisher
-</actor>
+ERROR: The querried ID was not found

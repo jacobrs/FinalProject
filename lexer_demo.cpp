@@ -14,16 +14,16 @@ int main(int argc, char** argv)
     // =============================== //
     //         Jacob's Paths           //
     // =============================== //
-    outfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/out.txt";
+    /*outfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/out.txt";
     filename = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/test.txt";
-    testfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/sample.txt";
+    testfile = "/users/jacob/Documents/School\ Work/Datastructures/finalproject/FinalProject/workspace/sample.txt";*/
     
     // =============================== //
     //         Alex's Paths            //
     // =============================== //
-	//outfile = "./workspace/out.txt";
-	//filename = "./workspace/test.txt";
-	//testfile = "./workspace/sample.txt";
+	outfile = "./workspace/out.txt";
+	filename = "./workspace/test.txt";
+	testfile = "./workspace/sample.txt";
     
     
 	// =============================== //
@@ -42,7 +42,13 @@ int main(int argc, char** argv)
     dom mydom(filename);
     mydom.pretty_print(outf);
     outf << endl << " =========== INDIVIDUAL TEST ==========" << endl;
-    mydom.get_root()->get_child(0)->get_child(8)->pretty_print(outf, 0);
+    //mydom.get_root()->get_child(0)->get_child(3)->pretty_print(outf, 0);
+	try{
+		mydom.get_element_by_id("jacobisgay")->pretty_print(outf, 0);
+	}
+	catch(id_not_found& e){
+		outf << e.message;
+	}
 	outf.close();
     return 0;
 }

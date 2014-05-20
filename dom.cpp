@@ -57,6 +57,32 @@ dom_node* dom_node::get_child(int num){
     return ret;
 }
 
+dom_node* dom_node::get_element_by_id(string id){
+	attrs.reset();
+	while(attrs.has_next()){
+		attribute* retattr = attrs.next();
+		if(getAttributeID(retattr) == "id"){
+			if(id == getAttributeValue(retattr))
+				return this;
+		}
+	}
+	children.reset();
+	while(children.has_next()){
+		dom_node* ptr = children.next();
+		ptr = ptr->get_element_by_id(id);
+		if(ptr != NULL)
+			return ptr;
+	}
+	return NULL;
+}
+
+dom_node* dom::get_element_by_id(string id){
+	dom_node* tmp = get_root()->get_element_by_id(id);
+	if(tmp == NULL)
+		throw id_not_found("ERROR: The querried ID was not found");
+	return tmp;
+}
+
 
 dom::dom(string file){
 	ifstream fin(file);

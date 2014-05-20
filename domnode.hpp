@@ -15,6 +15,13 @@ struct invalid_child_number {
     }
 };
 
+struct id_not_found {
+    std::string message;
+    id_not_found(std::string msg = "") {
+        message = msg;
+    }
+};
+
 struct invalid_node{};
 
 struct attribute{
@@ -39,9 +46,12 @@ public:
     // Getters
     linked_list<dom_node*> get_children(){return children;};
 	string get_name(){return name;}
+	string getAttributeID(attribute* tmp){return tmp->key;}
+	string getAttributeValue(attribute* tmp){return tmp->value;}
 
 	void set_inner_html(dom_node*, string);
 	linked_list<dom_node*> get_elements_by_tagname(string );
+	dom_node* get_element_by_id(string id);
 
 	//access children
 	int number_children(){return children.size();};
@@ -63,7 +73,6 @@ public:
     void pretty_print(ostream&);
 	linked_list<dom_node*> get_elements_by_tagname(string tag);
 private: 
-	dom_node* get_element_by_id(dom_node* current, string id);
 	dom_node* head; 
 };
 
