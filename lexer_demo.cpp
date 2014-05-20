@@ -41,6 +41,8 @@ int main(int argc, char** argv)
     ofstream outf(outfile);
     dom mydom(filename);
     mydom.pretty_print(outf);
+    outf << endl << " =========== INDIVIDUAL TEST ==========" << endl;
+    mydom.get_root()->get_child(0)->get_child(8)->pretty_print(outf, 0);
 	outf.close();
     return 0;
 }

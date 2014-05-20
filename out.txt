@@ -31,3 +31,7 @@
 		</actor>
 	</movie>
 </movies>
+ =========== INDIVIDUAL TEST ==========
+<actor role="Princess Leia"/>
+	Carrie Fisher
+</actor>
